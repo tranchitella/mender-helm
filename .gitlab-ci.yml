@@ -5,8 +5,7 @@ stages:
 include:
   - project: 'Northern.tech/Mender/mendertesting'
     file: '.gitlab-ci-check-commits-signoffs.yml'
-  - project: 'Northern.tech/Mender/mendertesting'
-    file: '.gitlab-ci-template-k8s-test.yml'
+  - remote: 'https://raw.githubusercontent.com/mendersoftware/mendertesting/7359b0be7b7a20a23d8c91ee7bfc32c54c915b6b/.gitlab-ci-template-k8s-test.yml'
   - project: 'Northern.tech/Mender/mendertesting'
     file: '.gitlab-ci-github-status-updates.yml'
 
@@ -28,7 +27,8 @@ build:
 test_helm_chart_install:
   extends: .test_on_k8s_cluster
   variables:
-    K8S_VERSION: "v1.16.9"
+    K8S_VERSION: "v1.18.15"
+    KIND_VERSION: "v0.10.0"
   dependencies:
     - build
   script:
